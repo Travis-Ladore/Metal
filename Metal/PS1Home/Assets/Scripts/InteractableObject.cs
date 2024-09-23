@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class InteractableObject : MonoBehaviour
 {
-    public string ItemName;
+    public string itemName;
     public bool playerInRange;
 
     public PlayerInputActions playerControls;
@@ -30,15 +30,24 @@ public class InteractableObject : MonoBehaviour
 
     public string GetItemName()
     {
-        return ItemName;
+        return itemName;
     }
 
     void Update()
     {
         if(interact.triggered && playerInRange && SelectionManager.Instance.onTarget)
         {
-            Debug.Log("item added to inventory");
-            Destroy(gameObject);
+            //if inventory is not full
+            if(!InventorySystem.Instance.CheckIfFull())
+            {
+                InventorySystem.Instance.AddToInventory(itemName);
+                Destroy(gameObject);
+
+            }
+            else
+            {
+                Debug.Log("Inventory is full");
+            }
         }
     }
 
