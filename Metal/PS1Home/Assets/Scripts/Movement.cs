@@ -178,6 +178,12 @@ public class Movement : MonoBehaviour
                 rb.AddForce(Vector3.down * Physics.gravity.y * (fallMultiplier - 1), ForceMode.Acceleration);
             }
         }
+        else
+        {
+            // Reset any additional gravity when the player is grounded
+            // Ensure that no additional force is applied once the player lands
+            rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Mathf.Abs(Physics.gravity.y), float.MaxValue), rb.velocity.z);
+        }
     }
 
     private bool CanStand()
