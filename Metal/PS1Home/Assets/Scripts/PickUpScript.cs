@@ -25,10 +25,15 @@ public class PickUpScript : MonoBehaviour
     private InputAction throwAction;
     private InputAction rotateAction;
 
+    public AudioClip pickUpSound;
+    public AudioClip throwSound;
+    private AudioSource audioSource;
+
     void Awake()
     {
         playerControls = new PlayerInputActions();
         //playerCam = player.GetComponent<PlayerCam>(); // Get reference to PlayerCam
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -105,6 +110,11 @@ public class PickUpScript : MonoBehaviour
             heldObjRb.transform.parent = holdPos.transform;
             heldObj.layer = LayerNumber;
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
+
+            if (pickUpSound != null)
+            {
+                audioSource.PlayOneShot(pickUpSound);
+            }
         }
     }
 
@@ -148,12 +158,37 @@ public class PickUpScript : MonoBehaviour
 
     void ThrowObject()
     {
-        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldObj.layer = 0;
-        heldObjRb.isKinematic = false;
-        heldObj.transform.parent = null;
-        heldObjRb.AddForce(transform.forward * throwForce);
-        heldObj = null;
+        if (heldObj != null)
+        {
+            // Re-enable collision with the player
+            Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
+
+            // Reset layer and physics properties
+            heldObj.layer = 0;
+            heldObjRb.isKinematic = false;
+            heldObj.transform.parent = null;
+
+
+            // Apply throwing force
+            heldObjRb.AddForce(transform.forward * throwForce);
+            if (throwSound != null)
+            {
+                audioSource.PlayOneShot(throwSound);
+            }
+
+            // Ensure the object has the Explodable script
+            Explodable explodable = heldObj.GetComponent<Explodable>();
+            if (explodable == null)
+            {
+                explodable = heldObj.AddComponent<Explodable>();
+            }
+
+            // Mark the object as thrown
+            explodable.MarkAsThrown();
+
+            // Clear the held object reference
+            heldObj = null;
+        }
     }
 
     void StopClipping()

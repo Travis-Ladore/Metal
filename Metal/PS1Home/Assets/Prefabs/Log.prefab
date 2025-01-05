@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348fdec81bc7b6743a8ed8d0ea4cd66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Log
+  itemName: 
   playerInRange: 0
 --- !u!65 &4544013916208663828
 BoxCollider:
@@ -169,5 +169,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.06612787, y: 0.09644623, z: 0.07824517}
-  m_Center: {x: -0.026308369, y: 0.00052163366, z: -0.0020941403}
+  m_Size: {x: 0.1, y: 0.1, z: 0.07824517}
+  m_Center: {x: 0, y: 0.00052163366, z: 0}
