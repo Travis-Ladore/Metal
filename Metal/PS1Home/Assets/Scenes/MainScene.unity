@@ -2954,6 +2954,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1014078996907066332, guid: 64365d20d72ac5740afc8e74fba31d3e, type: 3}
   m_PrefabInstance: {fileID: 680764452}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1063046713
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2855722198343556065, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_Name
+      value: Boulder00 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 64.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 188.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.42071173
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.08134582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.44798097
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.784664
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 39.389
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -40.761
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798538388952614338, guid: 3fb82be556d893643ae11c080c723474, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 108.453
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3fb82be556d893643ae11c080c723474, type: 3}
 --- !u!1001 &1086911507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3331,6 +3388,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 367232690391082804, guid: 10e8f22710055a14790cb99ecf884eea, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367232690391082804, guid: 10e8f22710055a14790cb99ecf884eea, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2850922105372234177, guid: 10e8f22710055a14790cb99ecf884eea, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.25754
@@ -3600,6 +3665,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d915fe0c40fe3a5489df8d586c30bc8d, type: 3}
+--- !u!21 &1213196250
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/FogPlus
+  m_Shader: {fileID: 4800000, guid: 6e29c71482e8a4348bac9cb16af799a1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1001 &1225444571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4872,37 +4968,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64365d20d72ac5740afc8e74fba31d3e, type: 3}
---- !u!21 &1556854806
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/FogPlus
-  m_Shader: {fileID: 4800000, guid: 6e29c71482e8a4348bac9cb16af799a1, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1 &1565551915 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d06abdb2afe8f494587a3a18e9478ad4, type: 3}
@@ -7507,7 +7572,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1aefb74fb65a08547884d693de927139, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8627,6 +8692,7 @@ SceneRoots:
   - {fileID: 1702751072}
   - {fileID: 5033590839147182657}
   - {fileID: 594037414}
+  - {fileID: 1063046713}
   - {fileID: 1796968533}
   - {fileID: 1765272610}
   - {fileID: 366495149}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6863991484267856250}
   - component: {fileID: 8811206480160161371}
   - component: {fileID: 8457540168225547385}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PickUpCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
