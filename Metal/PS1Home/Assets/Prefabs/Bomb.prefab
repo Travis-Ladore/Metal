@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5980595797799406833}
   - component: {fileID: 933549980205498006}
   - component: {fileID: 7492439628752823744}
+  - component: {fileID: 6660121392801258638}
+  - component: {fileID: 9210071973457937366}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: canPickUp
@@ -248,3 +250,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6660121392801258638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522713968890455861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.8773585, g: 0.8346326, b: 0.037246335, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &9210071973457937366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522713968890455861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4b41266b34018408907c86b2b3a4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Bomb
+  oninteraction:
+    m_PersistentCalls:
+      m_Calls: []

@@ -9,6 +9,7 @@ TagManager:
   - FxTemporaire
   - Drone
   - canPickUp
+  - interactable
   layers:
   - Default
   - TransparentFX

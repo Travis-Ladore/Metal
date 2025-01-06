@@ -56,7 +56,7 @@ public class PickUpScript : MonoBehaviour
 
     void Start()
     {
-        LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
+        LayerNumber = LayerMask.NameToLayer("HoldLayer"); //if your holdLayer is named differently make sure to change this ""
 
         //mouseLookScript = player.GetComponent<MouseLookScript>();
     }
@@ -168,7 +168,6 @@ public class PickUpScript : MonoBehaviour
             heldObjRb.isKinematic = false;
             heldObj.transform.parent = null;
 
-
             // Apply throwing force
             heldObjRb.AddForce(transform.forward * throwForce);
             if (throwSound != null)
@@ -176,15 +175,13 @@ public class PickUpScript : MonoBehaviour
                 audioSource.PlayOneShot(throwSound);
             }
 
-            // Ensure the object has the Explodable script
+            // Check if the object has the Explodable component
             Explodable explodable = heldObj.GetComponent<Explodable>();
-            if (explodable == null)
+            if (explodable != null)
             {
-                explodable = heldObj.AddComponent<Explodable>();
+                // Mark the object as thrown only if it is explodable
+                explodable.MarkAsThrown();
             }
-
-            // Mark the object as thrown
-            explodable.MarkAsThrown();
 
             // Clear the held object reference
             heldObj = null;
