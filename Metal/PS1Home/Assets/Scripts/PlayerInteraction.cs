@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float playerReach = 3f;
+    public float playerReach = 10f;
     Interact currentInteractable;
     public PlayerInputActions playerControls;
     private InputAction interact;
@@ -40,7 +40,8 @@ public class PlayerInteraction : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position,Camera.main.transform.forward);
         if(Physics.Raycast(ray, out hit, playerReach))
         {
-            if(hit.collider.tag == "Interactable")
+            Debug.Log("Hit: " + hit.collider.name);
+            if (hit.collider.tag == "interactable")
             {
                 Interact newInteractable = hit.collider.GetComponent<Interact>();
                 if(currentInteractable && newInteractable != currentInteractable)
@@ -66,9 +67,11 @@ public class PlayerInteraction : MonoBehaviour
     {
         currentInteractable = newInteractable;
         currentInteractable.EnableOutline();
+        HUDController.instance.EnableInteractionText(currentInteractable.message);
     }
     void DisableCurrentInteractable()
     {
+        HUDController.instance.DisableInteractionText();
         if(currentInteractable)
         {
             currentInteractable.DisableOutline();
