@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public AudioSource audioSource;
 
     [Header("Movement")]
 
@@ -25,7 +26,7 @@ public class Movement : MonoBehaviour
 
     //Player Variables that can be changed in editor to make movement feel different
     [Header("floats")]
-    private float moveSpeed;
+    public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
     public float slideSpeed;
@@ -66,6 +67,8 @@ public class Movement : MonoBehaviour
     public bool grounded;
     bool readyToJump;
     private bool exitingSlope;
+    private bool wallJumping = false;
+    
 
     //Vector
     Vector3 moveDirection;
@@ -165,7 +168,7 @@ public class Movement : MonoBehaviour
         MovePlayer();
 
         // Check if the player is not grounded (airborne)
-        if (!grounded)
+        if (!grounded && !wallJumping)
         {
             // Apply air drag
             Vector3 airDragForce = -rb.velocity * airDrag;
@@ -228,6 +231,11 @@ public class Movement : MonoBehaviour
             {
                 transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
                 rb.AddForce(Vector3.down * crouchDownForce, ForceMode.Impulse);
+                if (audioSource && !audioSource.isPlaying)
+                {
+                    audioSource.loop = true;
+                    audioSource.Play();
+                }
             }
         }
 
@@ -235,12 +243,24 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(crouchKey) && CanStand())
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+
+            if (audioSource && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
     }
 
     bool keepMomentum;
     private void StateHandler()
     {
+        sliding = false;
+        crouching = false;
+        wallrunning = false;
+        climbing = false;
+        freeze = false;
+        unlimited = false;
+        vaulting = false;
 
         //mode - freeze
         if (freeze)
@@ -248,11 +268,13 @@ public class Movement : MonoBehaviour
             state = MovementState.freeze;
             rb.velocity = Vector3.zero;
             desiredMoveSpeed = 0f;
+            freeze = true;
         }
         else if (unlimited)
         {
             state = MovementState.unlimited;
             desiredMoveSpeed = 999f;
+            unlimited = true;
             return;
         }
 
@@ -261,6 +283,7 @@ public class Movement : MonoBehaviour
         {
             state = MovementState.climbing;
             desiredMoveSpeed = climbSpeed;
+            climbing = true;
         }
 
 
@@ -273,9 +296,10 @@ public class Movement : MonoBehaviour
 
 
         //Mode - sliding
-        if (sliding)
+        else if (sliding)
         {
             state = MovementState.sliding;
+            sliding = true;
             if (OnSlope() && rb.velocity.y < 0.1f)
             {
                 desiredMoveSpeed = slideSpeed;
@@ -290,6 +314,7 @@ public class Movement : MonoBehaviour
         {
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
+            crouching = true;
         }
 
 
@@ -297,7 +322,7 @@ public class Movement : MonoBehaviour
 
 
         //Mode - Sprinting
-        if (grounded && Input.GetKey(sprintKey))
+        else if (grounded && Input.GetKey(sprintKey))
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
@@ -445,17 +470,34 @@ public class Movement : MonoBehaviour
 
     private void Jump()
     {
-        exitingSlope = true;
-        //reset y velocity
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        if (wallrunning)
+        {
+            Debug.Log("Wall Jumped!");
+            wallJumping = true;
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            Vector3 wallJumpDirection = transform.up + orientation.forward;
+            rb.AddForce(wallJumpDirection.normalized * jumpForce, ForceMode.Impulse);
+
+            wallrunning = false;
+            Invoke(nameof(ResetWallJump), 0.2f);
+        }
+        else if (grounded)
+        {
+            Debug.Log("Normal Jumped");
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
     }
     private void ResetJump()
     {
         readyToJump = true;
         exitingSlope = false;
 
+    }
+    private void ResetWallJump()
+    {
+        wallJumping = false;
     }
 
     private bool enableMovementOnNextTouch;
